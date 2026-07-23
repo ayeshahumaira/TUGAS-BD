@@ -1,0 +1,162 @@
+Microsoft Windows [Version 10.0.26200.8875]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\user>cd c:\xampp\mysql\bin
+
+c:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create Database Sekolah;
+Query OK, 1 row affected (0.007 sec)
+
+MariaDB [(none)]> use sekolah;
+Database changed
+MariaDB [sekolah]> create table siswa (
+    -> id INT AUTO_INCREMENT PRIMARY KEY,
+    -> nama varchar(100),
+    -> kelas varchar(20),
+    -> alamat varchar(100)
+    -> );
+Query OK, 0 rows affected (0.021 sec)
+
+MariaDB [sekolah]> insert into siswa(nama,kelas,alamat)values
+    -> ('ayesha','XI RPL2','Medan'),
+    -> ('fadila','XI RPL2','Medan'),
+    -> ('salsa','XI RPL2','Medan'),
+    -> ('nadzira','XI RPL2','Medan'),
+    -> ('shafa','XI APL3','Medan');
+Query OK, 5 rows affected (0.051 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [sekolah]> select* from siswa;
++----+---------+---------+--------+
+| id | nama    | kelas   | alamat |
++----+---------+---------+--------+
+|  1 | ayesha  | XI RPL2 | Medan  |
+|  2 | fadila  | XI RPL2 | Medan  |
+|  3 | salsa   | XI RPL2 | Medan  |
+|  4 | nadzira | XI RPL2 | Medan  |
+|  5 | shafa   | XI APL3 | Medan  |
++----+---------+---------+--------+
+5 rows in set (0.001 sec)
+
+MariaDB [sekolah]> select nama, kelas from siswa;
++---------+---------+
+| nama    | kelas   |
++---------+---------+
+| ayesha  | XI RPL2 |
+| fadila  | XI RPL2 |
+| salsa   | XI RPL2 |
+| nadzira | XI RPL2 |
+| shafa   | XI APL3 |
++---------+---------+
+5 rows in set (0.001 sec)
+
+MariaDB [sekolah]> select* from siswa
+    -> where alamat='medan';
++----+---------+---------+--------+
+| id | nama    | kelas   | alamat |
++----+---------+---------+--------+
+|  1 | ayesha  | XI RPL2 | Medan  |
+|  2 | fadila  | XI RPL2 | Medan  |
+|  3 | salsa   | XI RPL2 | Medan  |
+|  4 | nadzira | XI RPL2 | Medan  |
+|  5 | shafa   | XI APL3 | Medan  |
++----+---------+---------+--------+
+5 rows in set (0.001 sec)
+
+MariaDB [sekolah]> update siswa
+    -> set alamat='Pematangsiantar'
+    -> where id =1;
+Query OK, 1 row affected (0.006 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [sekolah]> select* from siswa;
++----+---------+---------+-----------------+
+| id | nama    | kelas   | alamat          |
++----+---------+---------+-----------------+
+|  1 | ayesha  | XI RPL2 | Pematangsiantar |
+|  2 | fadila  | XI RPL2 | Medan           |
+|  3 | salsa   | XI RPL2 | Medan           |
+|  4 | nadzira | XI RPL2 | Medan           |
+|  5 | shafa   | XI APL3 | Medan           |
++----+---------+---------+-----------------+
+5 rows in set (0.001 sec)
+
+MariaDB [sekolah]> select* from siswa
+    -> order by nama asc;
++----+---------+---------+-----------------+
+| id | nama    | kelas   | alamat          |
++----+---------+---------+-----------------+
+|  1 | ayesha  | XI RPL2 | Pematangsiantar |
+|  2 | fadila  | XI RPL2 | Medan           |
+|  4 | nadzira | XI RPL2 | Medan           |
+|  3 | salsa   | XI RPL2 | Medan           |
+|  5 | shafa   | XI APL3 | Medan           |
++----+---------+---------+-----------------+
+5 rows in set (0.001 sec)
+
+MariaDB [sekolah]> select count(*) as jumlah_siswa
+    -> from siswa;
++--------------+
+| jumlah_siswa |
++--------------+
+|            5 |
++--------------+
+1 row in set (0.001 sec)
+
+MariaDB [sekolah]> desc siswa;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| id     | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nama   | varchar(100) | YES  |     | NULL    |                |
+| kelas  | varchar(20)  | YES  |     | NULL    |                |
+| alamat | varchar(100) | YES  |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+4 rows in set (0.030 sec)
+
+MariaDB [sekolah]> show tables;
++-------------------+
+| Tables_in_sekolah |
++-------------------+
+| siswa             |
++-------------------+
+1 row in set (0.001 sec)
+
+MariaDB [sekolah]> show databases;
++---------------------+
+| Database            |
++---------------------+
+| aduan_sarana        |
+| apk_parkir          |
+| aplikasi db_do      |
+| database_dump       |
+| db_aplikasi_minuman |
+| dokter              |
+| ecommerce_atk       |
+| information_schema  |
+| muridrpl            |
+| mysql               |
+| parkiran            |
+| pengaduan_sarana    |
+| performance_schema  |
+| phpmyadmin          |
+| sekolah             |
+| sekolah_pengaduan   |
+| siswa               |
+| siswarpl            |
+| siswarpl1           |
+| siswarpl2           |
+| test                |
++---------------------+
+21 rows in set (0.091 sec)
+
+MariaDB [sekolah]>
